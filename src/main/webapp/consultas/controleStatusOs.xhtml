@@ -1,0 +1,148 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+   	xmlns:ui="http://java.sun.com/jsf/facelets"
+   	template="/WEB-INF/templates/template.xhtml">  	
+   	
+   	
+   	<ui:define name="cabecalho">Controle Status OS</ui:define>
+	<ui:define name="corpo">
+		
+	   	<f:metadata>    		
+    		<f:event listener="#{controleStatusOsMB.inicializar()}" type="preRenderView" />
+    	</f:metadata>  
+    	
+    	
+    	<h3>Resumo</h3>						 
+		<h:dataTable id="dataTables-resumo" 
+			styleClass="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" 
+			value="#{controleStatusOsMB.listControleStatusOsResumo}" var="resumo">
+			<h:column>				
+				<f:facet name="header">Descrição</f:facet>
+				<h:outputText value="#{resumo.descricao}"/>				
+			</h:column>
+			<h:column>
+				<f:facet name="header">Total</f:facet>
+				<h:outputText value="#{resumo.total}"/>
+			</h:column>
+		</h:dataTable>    	  	
+    	
+    	
+    	    	
+    	<h:dataTable id="dataTables-principal" 
+    		styleClass="table table-striped table-bordered table-hover dataTable no-footer dtr-inline"
+    		value="#{controleStatusOsMB.listControleStatusOsPrincipal}" width="100%" var="principal">
+			<h:column>				
+				<f:facet name="header">#</f:facet>
+				<h:outputText value="#{principal.ordem}"/>				
+			</h:column>
+			<h:column>				
+				<f:facet name="header">Placa</f:facet>
+				<h:outputText value="#{principal.placa}"/>				
+			</h:column>
+			<h:column>				
+				<f:facet name="header">Tipo</f:facet>
+				<h:outputText value="#{principal.tipoOrdem}"/>				
+			</h:column>    					    				    	
+			<h:column>				
+				<f:facet name="header">Descrição</f:facet>
+				<h:outputText value="#{principal.descricao}"/>				
+			</h:column>		
+			<h:column>				
+				<f:facet name="header">Pessoa</f:facet>
+				<h:outputText value="#{principal.pessoa}"/>				
+			</h:column>    				
+			<h:column>				
+				<f:facet name="header">Cidade</f:facet>
+				<h:outputText value="#{principal.cidade}"/>				
+			</h:column>    				
+    	</h:dataTable>   	
+  	
+
+		
+		
+	    <script>
+	    $(document).ready(function() {
+	        $('#dataTables-principal').DataTable({
+	        	  "language": {
+	        		    "search": "Pesquisar: ",
+	        		    "sZeroRecords": "Nenhum registro encontrado",
+	        		    "lengthMenu": "Exibir _MENU_ itens por página",	        		    
+	        		    "paginate": {
+	        		        "next":       "Próximo",
+	        		        "previous":   "Anterior"
+	        		    }	        		    
+	        		  },	        	
+	            responsive: true,
+	            "dom": "ftBlp",		            
+	            buttons: [
+  	      	    	{
+	      	            text: '<i class="fa fa-files-o" title="Copiar"></i>',
+	      	            extend: 'copy',
+	      	            className: "btn btn-warning btn-circle"
+	      	            	      	         
+		      	    },	      	            
+	      	    	{
+	      	            text: '<i class="fa fa-file-excel-o" title="Exportar Excel"></i>',
+	      	            extend: 'excel',
+	      	            className: "btn btn-success btn-circle"
+	      	            
+	      	          	  
+		      	    },
+		      	    {
+		      	    	text: '<i class="fa fa-file-pdf-o" title="Exportar PDF"></i>',
+		      	    	extend: 'pdf',
+		      	    	className: "btn btn-danger btn-circle"
+		      	    	
+			      	    
+				    }		      	            
+	                
+	            ]			             
+		                        
+	        });
+	    });
+
+	    $(document).ready(function() {
+	        $('#dataTables-resumo').DataTable({
+	        	  "language": {
+	        		    "search": "Pesquisar: ",
+	        		    "sZeroRecords": "Nenhum registro encontrado",	        		    
+	        		    "paginate": {
+	        		        "next":       "Próximo",
+	        		        "previous":   "Anterior"
+	        		    }	        		    
+	        		  },	        	
+	            responsive: true,
+	            "dom": "tB",		            
+	            buttons: [
+  	      	    	{
+	      	            text: '<i class="fa fa-files-o" title="Copiar"></i>',
+	      	            extend: 'copy',
+	      	            className: "btn btn-warning btn-circle"
+	      	            	      	         
+		      	    },	      	            
+	      	    	{
+	      	            text: '<i class="fa fa-file-excel-o" title="Exportar Excel"></i>',
+	      	            extend: 'excel',
+	      	            className: "btn btn-success btn-circle"
+	      	            
+	      	          	  
+		      	    },
+		      	    {
+		      	    	text: '<i class="fa fa-file-pdf-o" title="Exportar PDF"></i>',
+		      	    	extend: 'pdf',
+		      	    	className: "btn btn-danger btn-circle"
+		      	    	
+			      	    
+				    }		      	            
+	                
+	            ]			             
+		                        
+	        });
+	    });
+	    
+	    </script>		
+	</ui:define>
+</ui:composition>
+
+
